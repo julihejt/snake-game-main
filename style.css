@@ -1,0 +1,237 @@
+.landing-page {
+  text-align: center;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  font-family: "VT323", monospace;
+  background-color: #414141;
+}
+
+#game-board {
+  border-radius: 100px;
+  display: grid;
+  grid-template-columns: repeat(20, 20px);
+  grid-template-rows: repeat(20, 20px);
+  margin: 5px;
+}
+
+.game-border-1 {
+  border: #595f43 solid 10px;
+  border-radius: 30px;
+  box-shadow: inset 0 0 0 10px #595f43;
+}
+
+.game-border-2 {
+  border: #abb78a solid 8px;
+  border-radius: 26px;
+  box-shadow: inset 0 0 0 10px #abb78a;
+}
+
+.game-border-3 {
+  border: #8b966c solid 30px;
+  border-radius: 20px;
+  box-shadow: inset 0 0 0 5px #8b966c;
+  background-color: #c4cfa3;
+}
+
+#instruction-text {
+  position: absolute;
+  top: 65%;
+  color: #333;
+  width: 300px;
+  text-align: center;
+  text-transform: capitalize;
+  padding: 30px;
+  margin: 0;
+}
+
+.scores {
+  display: flex;
+  justify-content: space-between;
+}
+
+#score {
+  color: #abb78a;
+}
+
+#score,
+#highScore {
+  font-size: 40px;
+  font-weight: bolder;
+  margin: 10px 0;
+}
+
+#highScore {
+  color: #d8ddca;
+  display: none;
+}
+
+.snake {
+  background-color: #5a5a5a;
+  border: 1px solid #444;
+  background: linear-gradient(135deg, #5a5a5a 0%, #8b966c 100%);
+  border-radius: 5px;
+}
+
+.snake.head {
+  background-color: #4a4a4a;
+}
+
+.food {
+  background-image: url("./img/redApple.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  width: 100%;
+  height: 100%;
+}
+
+#logo {
+  position: absolute;
+}
+
+#footer {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  color: #d8ddca;
+  font-size: 14px;
+  font-family: "VT323", monospace;
+}
+
+/* Game Over Screen */
+#game-over-screen {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  border-radius: 10px;
+  display: none; /* Initially hidden */
+}
+
+#game-over-screen h2 {
+  margin: 0;
+  font-size: 48px;
+}
+
+#game-over-screen p {
+  margin: 10px 0;
+  font-size: 24px;
+}
+
+#restart-button {
+  background-color: #d8ddca;
+  color: #414141;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-family: "VT323", monospace;
+  font-size: 24px;
+}
+
+#restart-button:hover {
+  background-color: #abb78a;
+}
+
+/* Score Update Animation */
+@keyframes scoreUpdate {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+#score.update,
+#highScore.update {
+  animation: scoreUpdate 0.5s ease-in-out;
+}
+
+/* Responsive Design */
+@media only screen and (max-width: 600px) {
+  #game-board {
+    grid-template-columns: repeat(20, 15px);
+    grid-template-rows: repeat(20, 15px);
+  }
+
+  #score,
+  #highScore {
+    font-size: 30px;
+  }
+
+  #instruction-text {
+    top: 70%;
+    width: 90%;
+    font-size: 16px;
+  }
+
+  #game-over-screen h2 {
+    font-size: 36px;
+  }
+
+  #game-over-screen p {
+    font-size: 18px;
+  }
+
+  #restart-button {
+    font-size: 18px;
+  }
+}
+
+/* Landing Page Styles */
+.landing-page {
+  text-align: center;
+}
+
+.options button {
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #d8ddca;
+  border: none;
+  border-radius: 5px;
+  color: #282c34;
+}
+
+.options button:hover {
+  background-color: #abb78a;
+}
+
+.game-container {
+  display: none;
+  text-align: center;
+}
+
+#final-score {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+#restart-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #d8ddca;
+  border: none;
+  border-radius: 5px;
+  color: #282c34;
+}
+
+#restart-button:hover {
+  background-color: #abb78a;
+}
