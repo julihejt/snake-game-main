@@ -8,29 +8,48 @@ Welcome to the **Snake Game**! This is a fun, browser-based rendition of the cla
 - [✨ Features](#-features)
 - [🎮 How to Play](#-how-to-play)
 - [🛠️ Installation](#-installation)
-- [📄 License](#-license)
+- [🔐 Login and Registration](#-login-and-registration)
+- [👤 Guest Mode](#-guest-mode)
 
 ## 🎉 Overview
 
-The Snake Game challenges you to control a snake on a game board, eating food to grow longer while avoiding walls and the snake's own tail. See how long you can survive and achieve the highest score!
+The Snake Game is a simple yet addictive game where you control a snake to eat food and grow longer. Avoid running into the walls or the snake's own body to keep playing.
 
 ## ✨ Features
 
-- 🖥️ **Responsive Design**: Playable on both desktop and mobile devices.
-- 🏆 **High Score Tracking**: Keep track of your best scores and strive to beat them!
-- ⏩ **Increasing Difficulty**: The snake speeds up as it grows, adding to the challenge.
-- 🎮 **Keyboard Controls**: Navigate using the arrow keys for smooth gameplay.
-- 🎨 **Custom Graphics**: Enjoy retro-inspired, pixelated visuals with custom-designed elements for the snake and food.
+- Classic snake gameplay
+- Modern design with HTML, CSS, and JavaScript
+- Login and registration functionality
+- Continue as guest option
+- High score tracking
 
 ## 🎮 How to Play
 
-1. **Press the space bar** to start the game.
-2. Use the **arrow keys** to control the snake:
-   - ⬆️ **Up Arrow**: Move up
-   - ⬇️ **Down Arrow**: Move down
-   - ⬅️ **Left Arrow**: Move left
-   - ➡️ **Right Arrow**: Move right
-3. Eat the food that appears on the board to grow your snake. 🍎
-4. **Avoid** hitting the walls or your own tail. The game ends if you collide with either! ❌
-5. Your score is based on the length of the snake. Try to beat your **high score**!
-6. When the game is over, **click the "Play Again" button** to restart the game and try for a higher score. 🔄
+1. Use the arrow keys to control the direction of the snake.
+2. Eat the food to grow longer.
+3. Avoid running into the walls or the snake's own body.
+4. Press the space bar to start the game.
+
+## 🛠️ Installation
+
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/yourusername/snake-game.git
+   ```
+2. Open the `index.html` file in your browser to start playing.
+
+## 🔐 Login and Registration
+
+The game includes a login and registration system to save your high scores. Follow these steps:
+
+1. Click on the "Register" button to create a new account.
+2. Enter your username and password, then click "Register".
+3. Click on the "Login" button to log in with your credentials.
+4. Enter your username and password, then click "Login".
+
+## 👤 Guest Mode
+
+If you prefer not to create an account, you can continue as a guest:
+
+1. Click on the "Continue as Guest" button.
+2. Play the game without saving your high scores.
