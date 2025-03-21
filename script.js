@@ -122,6 +122,8 @@ function increaseSpeed() {
     gameSpeedDelay -= 10;
   }
 
+  console.log(`Game Speed: ${gameSpeedDelay}ms per move`);
+
   clearInterval(gameInterval);
   gameInterval = setInterval(move, gameSpeedDelay);
 }
@@ -213,44 +215,81 @@ restartButton.addEventListener("click", () => {
 // ----------------- USER AUTHENTICATION -----------------
 // Check login status
 function checkLoginStatus() {
+  console.log("Running checkLoginStatus...");
   const currentUser = localStorage.getItem("currentUser");
-  if (currentUser) {
-    document.getElementById("logout-btn").style.display = "inline-block";
+  console.log("Current User:", currentUser);
+
+  const logoutBtn = document.getElementById("logout-btn");
+  if (!logoutBtn) {
+    console.error("Logout button not found in the DOM!");
+    return;
+  }
+
+  if (currentUser && currentUser !== "guest") {
+    console.log("current user logged in");
+    logoutBtn.style.display = "inline-block";
     document.getElementById("login-btn").style.display = "none";
     document.getElementById("register-btn").style.display = "none";
     document.getElementById("guest-btn").style.display = "none";
+  } else {
+    logoutBtn.style.display = "none";
   }
 }
 
 // Handle user registration
 document.getElementById("register-btn").addEventListener("click", function () {
-  let username = prompt("Enter a username:");
-  let password = prompt("Enter a password:");
-
-  if (!username || !password) {
-    alert("Username and password cannot be empty!");
-    return;
-  }
-
-  if (localStorage.getItem(username)) {
-    alert("User already exists. Try a different username.");
-  } else {
-    localStorage.setItem(username, JSON.stringify({ password }));
-    alert("Registration successful! Please log in.");
-  }
+  // Hide login form and show the registration form
+  document.getElementById("login-form").style.display = "none";
+  document.getElementById("register-form").style.display = "block";
 });
+
+// Handle registration form submission
+document
+  .getElementById("register-submit")
+  .addEventListener("click", function () {
+    let username = document.getElementById("register-username").value;
+    let password = document.getElementById("register-password").value;
+
+    // Check if username or password is empty
+    if (!username || !password) {
+      alert("Username and password cannot be empty!");
+      return;
+    }
+
+    // Check if the username already exists
+    if (localStorage.getItem(username)) {
+      alert("User already exists. Try a different username.");
+    } else {
+      // Store the new user in localStorage
+      localStorage.setItem(username, JSON.stringify({ password }));
+      alert("Registration successful! Please log in.");
+
+      // Hide the registration form after successful registration
+      document.getElementById("register-form").style.display = "none";
+      document.getElementById("login-form").style.display = "block"; // Show login form after registration
+    }
+  });
 
 // Handle user login
 document.getElementById("login-btn").addEventListener("click", function () {
-  let username = prompt("Enter your username:");
-  let password = prompt("Enter your password:");
+  // Hide registration form and show the login form
+  document.getElementById("register-form").style.display = "none";
+  document.getElementById("login-form").style.display = "block"; // Show login form
+});
+
+// Handle login form submission
+document.getElementById("login-submit").addEventListener("click", function () {
+  let username = document.getElementById("login-username").value;
+  let password = document.getElementById("login-password").value;
 
   let storedUser = JSON.parse(localStorage.getItem(username));
 
   if (storedUser && storedUser.password === password) {
     alert("Login successful!");
     localStorage.setItem("currentUser", username);
+    document.getElementById("login-form").style.display = "none"; // Hide login form
     checkLoginStatus();
+    showGame(); // Proceed to game
   } else {
     alert("Invalid username or password.");
   }
@@ -261,6 +300,7 @@ document.getElementById("guest-btn").addEventListener("click", function () {
   alert("You are playing as a guest.");
   localStorage.setItem("currentUser", "guest");
   checkLoginStatus();
+  showGame();
 });
 
 // Handle logout
@@ -269,6 +309,12 @@ document.getElementById("logout-btn").addEventListener("click", function () {
   alert("You have been logged out.");
   location.reload();
 });
+
+function showGame() {
+  document.getElementById("landing-page").style.display = "none";
+  document.getElementById("game-container").style.display = "block";
+  checkLoginStatus(); // Ensure the logout button updates when the game appears
+}
 
 // Run login check on page load
 checkLoginStatus();

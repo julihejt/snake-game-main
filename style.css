@@ -41,13 +41,15 @@ body {
 
 #instruction-text {
   position: absolute;
-  top: 65%;
-  color: #333;
-  width: 300px;
+  top: 70%; /* Adjusted for better placement */
+  left: 50%;
+  transform: translateX(-50%);
   text-align: center;
-  text-transform: capitalize;
-  padding: 30px;
-  margin: 0;
+  padding: 10px;
+  width: 80%; /* Ensure it stays within the game board */
+  max-width: 300px; /* Prevents text from getting too wide */
+  font-size: 1.5em; /* Adjust based on responsiveness */
+  white-space: normal;
 }
 
 .scores {
@@ -93,6 +95,9 @@ body {
 }
 
 #logo {
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
   position: absolute;
 }
 
@@ -234,4 +239,116 @@ body {
 
 #restart-button:hover {
   background-color: #abb78a;
+}
+
+#logout-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: none; /* Initially hidden */
+  padding: 8px 12px;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#logout-btn:hover {
+  background-color: #d43f3f;
+}
+
+#register-form {
+  background-color: #333; /* Dark background for contrast */
+  padding: 20px;
+  border-radius: 10px;
+  width: 320px;
+  margin: 20px auto; /* Center the form */
+  text-align: center;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Soft shadow */
+}
+
+#register-form h2 {
+  color: #fff; /* White text */
+  margin-bottom: 15px;
+  font-size: 22px;
+}
+
+#register-form input {
+  width: 90%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #bbb;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: #282c34;
+  color: #fff;
+}
+
+#register-form input::placeholder {
+  color: #ccc;
+}
+
+#register-form button {
+  background-color: #d8d8da;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #282c34;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+#register-form button:hover {
+  background-color: #b8b8b8; /* Slightly darker on hover */
+}
+
+#login-form {
+  background-color: #333; /* Dark background for contrast */
+  padding: 20px;
+  border-radius: 10px;
+  width: 320px;
+  margin: 20px auto; /* Center the form */
+  text-align: center;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Soft shadow */
+}
+
+#login-form h2 {
+  color: #fff; /* White text */
+  margin-bottom: 15px;
+  font-size: 22px;
+}
+
+#login-form input {
+  width: 90%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #bbb;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: #282c34;
+  color: #fff;
+}
+
+#login-form input::placeholder {
+  color: #ccc;
+}
+
+#login-form button {
+  background-color: #d8d8da;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #282c34;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+#login-form button:hover {
+  background-color: #b8b8b8; /* Slightly darker on hover */
 }
