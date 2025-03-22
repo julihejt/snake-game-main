@@ -352,3 +352,17 @@ body {
 #login-form button:hover {
   background-color: #b8b8b8; /* Slightly darker on hover */
 }
+
+/* Position the profile icon in the top-right corner */
+.profile-icon {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000; /* Ensure it stays above other elements */
+}
+
+.profile-icon img {
+  width: 40px; /* Adjust the size of the profile icon */
+  height: 40px;
+  cursor: pointer; /* Make the icon clickable */
+}

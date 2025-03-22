@@ -228,9 +228,9 @@ function checkLoginStatus() {
   if (currentUser && currentUser !== "guest") {
     console.log("current user logged in");
     logoutBtn.style.display = "inline-block";
-    document.getElementById("login-btn").style.display = "none";
-    document.getElementById("register-btn").style.display = "none";
-    document.getElementById("guest-btn").style.display = "none";
+    document.getElementById("login-btn");
+    document.getElementById("register-btn");
+    document.getElementById("guest-btn");
   } else {
     logoutBtn.style.display = "none";
   }
