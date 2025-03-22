@@ -8,6 +8,10 @@ const gameOverScreen = document.getElementById("game-over-screen");
 const finalScoreText = document.getElementById("final-score");
 const restartButton = document.getElementById("restart-button");
 
+// Profile icon and elements
+const profileIcon = document.getElementById("profile-icon");
+const logoutBtn = document.getElementById("logout-btn");
+
 // Define game variables
 const gridSize = 20;
 let snake = [{ x: 10, y: 10 }];
@@ -199,11 +203,19 @@ function stopGame() {
 
 function updateHighScore() {
   const currentScore = snake.length - 1;
+  const currentUser = localStorage.getItem("currentUser");
+
   if (currentScore > highScore) {
     highScore = currentScore;
     highScoreText.textContent = highScore.toString().padStart(3, "0");
+
+    // Save high score for the user in localStorage
+    if (currentUser !== "guest") {
+      let userScores = JSON.parse(localStorage.getItem(currentUser)) || {};
+      userScores.highScore = highScore;
+      localStorage.setItem(currentUser, JSON.stringify(userScores));
+    }
   }
-  highScoreText.style.display = "block";
 }
 
 // Restart game button functionality
@@ -219,20 +231,34 @@ function checkLoginStatus() {
   const currentUser = localStorage.getItem("currentUser");
   console.log("Current User:", currentUser);
 
-  const logoutBtn = document.getElementById("logout-btn");
-  if (!logoutBtn) {
-    console.error("Logout button not found in the DOM!");
-    return;
-  }
-
   if (currentUser && currentUser !== "guest") {
     console.log("current user logged in");
     logoutBtn.style.display = "inline-block";
-    document.getElementById("login-btn");
-    document.getElementById("register-btn");
-    document.getElementById("guest-btn");
+    profileIcon.style.display = "inline-block"; // Show the profile icon if logged in
   } else {
     logoutBtn.style.display = "none";
+    profileIcon.style.display = "none"; // Hide the profile icon if not logged in
+  }
+}
+
+// Profile icon click handler
+function redirectToProfile() {
+  window.location.href = "/profile"; // Redirect to the profile page (update URL as needed)
+}
+
+// Profile page logic to display user data
+function loadProfilePage() {
+  const currentUser = localStorage.getItem("currentUser");
+
+  if (currentUser && currentUser !== "guest") {
+    document.getElementById(
+      "profile-username"
+    ).textContent = `Username: ${currentUser}`;
+    const userScores = JSON.parse(localStorage.getItem(currentUser)) || {};
+    const userHighScore = userScores.highScore || 0;
+    document.getElementById(
+      "profile-high-score"
+    ).textContent = `High Score: ${userHighScore.toString().padStart(3, "0")}`;
   }
 }
 
@@ -289,32 +315,21 @@ document.getElementById("login-submit").addEventListener("click", function () {
     localStorage.setItem("currentUser", username);
     document.getElementById("login-form").style.display = "none"; // Hide login form
     checkLoginStatus();
-    showGame(); // Proceed to game
+    showGame(); // Show the game after successful login
   } else {
     alert("Invalid username or password.");
   }
 });
 
-// Handle guest mode
-document.getElementById("guest-btn").addEventListener("click", function () {
-  alert("You are playing as a guest.");
-  localStorage.setItem("currentUser", "guest");
-  checkLoginStatus();
-  showGame();
-});
-
-// Handle logout
-document.getElementById("logout-btn").addEventListener("click", function () {
+// Handle logging out
+function logout() {
   localStorage.removeItem("currentUser");
   alert("You have been logged out.");
-  location.reload();
-});
-
-function showGame() {
-  document.getElementById("landing-page").style.display = "none";
-  document.getElementById("game-container").style.display = "block";
-  checkLoginStatus(); // Ensure the logout button updates when the game appears
+  window.location.href = "/"; // Redirect to the homepage or game landing page
 }
 
-// Run login check on page load
-checkLoginStatus();
+// Show the game after login
+function showGame() {
+  document.getElementById("landing-page").style.display = "none"; // Hide landing page
+  document.getElementById("game-container").style.display = "block"; // Show game
+}

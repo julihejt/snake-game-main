@@ -8,6 +8,7 @@
     <script src="script.js" defer></script>
   </head>
   <body>
+    <!-- Landing Page -->
     <div id="landing-page" class="landing-page">
       <h1>Welcome to the Game</h1>
       <div class="options">
@@ -33,9 +34,20 @@
       </div>
     </div>
 
+    <!-- Game Container -->
     <div id="game-container" class="game-container" style="display: none">
       <img id="logo" src="./img/snakeLogo.png" alt="snake-logo" />
       <button id="logout-btn" style="display: none">Logout</button>
+
+      <!-- Profile Icon -->
+      <div class="profile-icon" id="profile-icon" style="display: block">
+        <img
+          src="./img/profileIcon.png"
+          alt="Profile Icon"
+          onclick="redirectToProfile()"
+        />
+      </div>
+
       <div>
         <div class="scores">
           <h1 id="score">Score: 000</h1>
@@ -56,6 +68,15 @@
         <p id="final-score">Final Score: 000</p>
         <button id="restart-button">Play Again</button>
       </div>
+    </div>
+
+    <!-- Profile Page -->
+    <div id="profile-page" style="display: none">
+      <h1>Profile</h1>
+      <div id="profile-username"></div>
+      <h2>High Scores:</h2>
+      <ul id="highscores-list"></ul>
+      <button onclick="goBackToGame()">Back to Game</button>
     </div>
   </body>
 </html>
